@@ -14,3 +14,6 @@ answer = random.randrange(1, 10)
 # * Remember that the "type" returned by user input is always str
 # * You can temporarily replace the randomly generated number with a fixed value
 #   if you need to test if something is working, eg, answer = 4
+# * Test your code by running "python challenge.py" (without quotes) in the
+#   terminal from the same directory as this file. Your IDE might also have
+#   other ways of running the code.
