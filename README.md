@@ -51,5 +51,4 @@ This will tell python to run the file you just saved using python. If the file c
 
 ### Week overview
 
-#### Week 01
-[Week 1](week_01) covers variables, basic data types, operators, conditionals, and a couple of builtin functions for inputting and outputting text.
+* [Week 01](week_01) covers variables, basic data types, operators, conditionals, and a couple of builtin functions for inputting and outputting text.
