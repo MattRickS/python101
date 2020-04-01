@@ -1,3 +1,5 @@
+# Anything following the # symbol is a comment and does not get executed
+
 # ============================================================================ #
 # VARIABLES and ASSIGNMENT
 
