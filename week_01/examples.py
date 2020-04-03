@@ -70,7 +70,7 @@ user_input = input("Enter some text: ")
 # a number
 
 # ============================================================================ #
-# OPERATORS : Basic mathematical operators, just like a calculator!
+# ARITHMETIC OPERATORS : Basic mathematical operators, just like a calculator!
 
 # Simple maths can be done using the symbols + - * /
 add = 1 + 2  # 3
@@ -93,7 +93,7 @@ modulo = 10 % 3  # 1 <- The remainder after dividing 3 into 10
 #   - in python 3 divide will always return a float)
 # If either value (or both) is a float, the result will be a float.
 
-# BOOLEAN OPERATORS : Boolean operators will always return a boolean value
+# COMPARISON OPERATORS : Boolean operators will always return a boolean value
 
 # The == operator is used to compare if two values are equal
 equal_ints = 1 == 1  # True
@@ -106,6 +106,13 @@ greater_equals = 4 >= 4  # True <- 4 is greater than or equal to 4
 less_equals = 5 <= 3  # False <- 5 is not less than or equal to 3
 not_equals_1 = 3 != 5  # True <- 3 does not equal 5
 not_equals_2 = 3 != 3  # False <- 3 is equal to 3
+
+# LOGICAL OPERATORS : Combining booleans
+both_true = True and True  # True <- Checks if the left AND the right are True
+either_true = True or False  # True <- Checks if the left OR right are True
+opposite = not True  # False <- Inverts the boolean, so True becomes False
+
+with_values = (10 > 5) and (3 == 3)  # True <- Both statements evaluate to True
 
 # ============================================================================ #
 # CONDITIONALS
