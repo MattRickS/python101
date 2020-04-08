@@ -28,6 +28,11 @@ another_boolean = False
 # but you have to be consistent!
 sentence = "Strings can be sentences"
 word = 'word'
+# To include quotes in the string, use the other quote type to define the string
+quote = 'Jon said "this is python"'
+# To include both types of quotes, use a backslash before any that would end the
+# string early. This is called "escaping" the character.
+mixed_quote = 'Jon said "I\'m here"'
 
 # None is a special value / type by itself. It means there is nothing at all
 empty = None
@@ -80,7 +85,7 @@ divide = 10 / 4  # 2.5
 
 x = 5
 y = x + 1  # 6  <- The variable "x" is just a placeholder for the value 5
-z = y - x  # -1  <- The same as 6 - 5
+z = y - x  # 1  <- The same as 6 - 5
 
 # Slightly more advanced operations
 exponent = 2 ** 4  # 16 <- ie, "2 to the power of 4", (2 * 2 * 2 * 2)
