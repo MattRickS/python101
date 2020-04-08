@@ -202,3 +202,73 @@ dict(a_set)  # TypeError: cannot convert dictionary update sequence element #0 t
 set(a_list)  # {"duck", "goose"}  <- converting to a set only keeps unique elements
 set(a_tuple)  # {True, False}  <- converting to a set only keeps unique elements
 set(a_dict)  # {"one", "two", "three"}  <- Only takes the keys from the dict
+
+# ============================================================================ #
+# STRINGS
+
+# You may not have realised it, but strings are containers too! They represent a
+# container of individual characters. Because of this, you can use the getitem
+# operator on strings too
+string = "hello"
+print(string[0])  # "h"
+
+# setitem is not allowed because strings are "immutable"
+
+# ============================================================================ #
+# SLICING
+
+# Slicing is taking a series of values from a container in one go using the
+# getitem operator. To do this, you define a "range" of indexes to take.
+string = "Hello, World!"
+print(string[0])  # "H" <- Regular getitem only gets one value
+print(string[0:5])  # "Hello" <- START:END indexes separated by a colon
+# Note, the range of indexes does not include the END index, it stops 1 before
+
+# If you don't define the start index, it will take from the beginning of the
+# container
+print(string[:5])  # "Hello"
+
+# If you don't define the end index, it will take until the end of the container
+print(string[7:])  # "World!"
+
+# If you don't define either, it will take every value in the container - which
+# is one way to copy the list. This is a good way to avoid "mutability" errors
+print(string[:])  # "Hello, World!"
+
+# Slicing will work on any container that uses indexes, such as list, tuple, string
+full_list = [10, 20, 30, 40, 50, 60]
+sliced_list = full_list[2:4]  # [30, 40]
+
+# It's also possible to only take every Nth item in a container using the format
+# [START:END:STEP] where STEP is how many indexes to skip between items
+# For example, to take every second item in a list, we can skip the start index
+# so that it starts at the first item, and skip the end index so that it goes to
+# the end, but add an extra step of 2
+print(full_list[::2])  # [10, 30, 50]
+
+# ============================================================================ #
+# MUTABILITY
+
+# Mutability refers to whether or not a value can be modified after it's created
+# For example, none of the basic types can be modified
+a = 1
+a = 2
+# It may look like we've modified it, but we've only changed which value the
+# variable "a" points to - The value 1 still means 1.
+
+# Some containers can be edited though, because we're changing PART of the value
+mutable = [1, 2, 3]
+mutable[0] = 10
+print(mutable)  # [10, 2, 3]
+# The variable "mutable" is still pointing to the same list, but the list has
+# changed (or "mutated", hence the name).
+
+# Mutable types include lists, dictionaries, and sets. Tuples are not mutable,
+# because they explicitly stop you from modifying them.
+
+# Why does it matter? Only mutable types can be used as keys in dictionaries, or
+# in sets. The reason for this is because the values have to be unique - there
+# can't be two keys the same in a dictionary, and sets only keep unique values.
+# If there were two mutable values in a set/dict, and one was modified so that
+# it was the same as the other - the container wouldn't know which to keep!
+invalid_set = {[1, 2], [3, 4]}  # TypeError: unhashable type: 'list'
