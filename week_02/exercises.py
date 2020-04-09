@@ -14,7 +14,7 @@
 # 5. Increase the cost of one of the items by 1.0
 
 
-# 6. Print out all the unique values in this list
+# 6. Calculate and print out all the unique values in this list
 values = [1, 1, 2, 2, 1, 3]
 
 

@@ -16,4 +16,7 @@ shopping_list = [
 ]
 
 # Write some code that calculates the cost of the shopping list and prints it out
-# Hint: There is a method on lists for counting the number of times a value appears
+# Hints:
+# * There is a method on lists for counting the number of times a value appears
+# * Checking the list for each item in the shop is more flexible - you should be
+#   able to modify the shopping list and the same code still works
