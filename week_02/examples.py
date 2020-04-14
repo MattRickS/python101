@@ -15,7 +15,7 @@ list_of_ints = [1, 2, 3]
 mixed_list = [1, "text", 0.0, None, True]
 # To find the number of items in a list, use the builtin function len() on the
 # list variable
-len(list_of_ints)  # 3 <- There are 3 values in the list
+length = len(list_of_ints)  # 3 <- There are 3 values in the list
 
 # INDEXING
 # Lists are "ordered", meaning they keep track of each value's position in the
@@ -107,6 +107,7 @@ empty_dictionary = {}
 # "position" is called the "key", while the value it finds is called the "value"
 # This dictionary uses the string "key" as the key, "mapped" to the string "value"
 example_dictionary = {"key": "value"}
+multiple_dictionary = {"a": 1, "b": 2, "c": 3}
 
 # getitem and setitem work the same as for a list, but using the "key" instead
 # of the "index"
