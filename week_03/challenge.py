@@ -23,7 +23,7 @@ grid = [
 
 # 4.
 # Put the code inside a loop so the user can have multiple guesses. Make sure
-# the game ends if they guess correctly!
+# the loop ends if they guess correctly!
 
 # Hints:
 # * Don't forget that user input is always a string!
