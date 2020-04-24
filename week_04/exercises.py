@@ -12,5 +12,11 @@
 #    (51 + 14) + (23 + 80)
 
 
-# 4. Write a function that raise an error (either raise it explicitly or write
-#    some code that causes an error), then call the function and catch the error
+# 4. The code below might cause an error if it runs. Write some code to catch
+#    and print out any errors that happen
+VALUES = [10, 20, 30]
+
+def calculate_value(index):
+    return VALUES[index] * 20
+
+calculate_value(3)
