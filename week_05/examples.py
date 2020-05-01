@@ -28,8 +28,10 @@ a_string.replace("n", "p")  # 'A septepce, with pupctuatiop!'
 "{} {}".format("a", "b")  # 'a b'
 # The index of the argument to use can specified inside the brackets
 "{1} {0}".format("a", "b")  # 'b a'
+"{1} {0} {1}".format("a", "b")  # 'b a b'
 # The brackets can be named and take keywords
 "{one} {two}".format(one="a", two="b")  # 'a b'
+"{one} {two} {one}".format(one="a", two="b")  # 'a b a'
 # Formatting automatically casts to string for us
 "a = {}".format(1)  # 'a = 1'
 # Extra formatting can be done using a : and custom arguments. Here's a common use case:
@@ -108,7 +110,7 @@ import os
 # Gets the filename (or folder name) of a given path
 os.path.basename("/this/is/an/example/file.ext")  # file.ext
 # Gets the directory path for the given folder/file
-os.path.dirname("/this/is/an/example/file.ext")  # /this/is/an/example/file
+os.path.dirname("/this/is/an/example/file.ext")  # /this/is/an/example
 # Joins together a path and folder/filename(s) using the OS correct separator
 os.path.join("/some/directory", "file.ext")  # /some/directory/file.ext
 os.path.join("/some/directory", "folder", "file.ext")  # /some/directory/folder/file.ext
@@ -174,8 +176,11 @@ sequence = fileseq.FileSequence("/fake/file/sequence.5-100#.png")
 sequence.frameRange()  # '5-100'
 sequence.frame(32)  # '/fake/file/sequence.0032.png'
 sequence.start()  # 5
-sequence.basename()  # 'sequence'
+sequence.basename()  # 'sequence.'
 sequence.dirname()  # '/fake/file'
+
+for filepath in sequence:
+    print(filepath)
 
 # Installing third party modules using pip will install them in a location relative to
 # the current python interpreter (ie, the executable for the version of python you're
@@ -217,7 +222,7 @@ f.close()
 # also run some code when the block ends, even if there were errors. This is referred to
 # as a "context" and is start using the "with" keyword. The syntax is as follows:
 with open("/path/to/a/file.txt") as f:
-    f.read()
+    data = f.read()
 
 # The "with" keyword takes an object (in this case, the file handle created by open),
 # and stores it in a variable "f" using the "as" keyword. We're then able to run any
