@@ -186,6 +186,45 @@ sequence.dirname()  # '/fake/file'
 #   C:\Python27\python.exe -m pip install Fileseq
 
 # ============================================================================ #
+# FILE HANDLES
+# It's possible to read and write files on the computer using python. This is made
+# really easy using the builtin "open" command, which you call by passing it a filepath.
+f = open("/path/to/a/file.txt", "w")
+
+# The second argument is the "mode" it opens in, eg, read-only, write-only, read and
+# write. There are many modes, but here are the most important:
+#   w - read and write
+#   r - read only
+#   a - append (this is like w, but writing to the file adds on the end instead of
+#       replacing the content)
+# Read more about file handle modes here: https://stackabuse.com/file-handling-in-python/
+# Note: If you open a filepath in write mode, it will create the file if it doesn't exist
+
+# You can read the contents of the file using one of the following methods
+line = f.readline()  # Reads one line
+contents = f.read()  # Reads the entire contents
+
+# You can write to the file using the write methods
+f.write("Writing some text to the file")
+
+# Be careful though, when you open a file it will stay open for the entire duration of
+# the python session until you close it again
+f.close()
+
+# This can cause problems if you forget to close it, or if an error is raised that
+# prevents it from closing. To avoid this, there is another keyword which allows certain
+# python objects to run some code when starting an indented block, and ensures it can
+# also run some code when the block ends, even if there were errors. This is referred to
+# as a "context" and is start using the "with" keyword. The syntax is as follows:
+with open("/path/to/a/file.txt") as f:
+    f.read()
+
+# The "with" keyword takes an object (in this case, the file handle created by open),
+# and stores it in a variable "f" using the "as" keyword. We're then able to run any
+# code we need with the file handle, and when the block ends, it automatically closes
+# the file for us, even if we raise an error! This is the safest way to open files.
+
+# ============================================================================ #
 # BEST PRACTICES
 # When programming, it's important to try and write carefully to avoid causing bugs, but
 # also to make the code easier to read, understand, and maintain. You want to be able to
