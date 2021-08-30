@@ -1,4 +1,89 @@
 # ============================================================================ #
+# LOOPS
+# Loops are a more advanced form of "code flow". We already used conditionals to
+# make the interpreter skip some lines, but loops allow the interpreter to go
+# back UP the code so that it can re-run some lines.
+# Loops will run the same block of code multiple times. This is referred to as
+# "iterating" over the code. Each time the block runs is called an "iteration".
+# This is ideal when working with containers which contain multiple values.
+
+# ============================================================================ #
+# WHILE
+# The "while" loop runs as long as a given condition evaluates to True. In fact,
+# the syntax for a while is the same as an "if", but using the keyword "while".
+# Here's an example and we'll break it down afterwards
+value = 3
+while value > 0:
+    print(value)
+    value -= 1
+
+print("Blastoff!")
+# The while keyword is followed by any statement that resolves to a boolean,
+# just like the conditional statements from week 01. It also ends with a colon,
+# and must be followed by an indented block. The difference between this and a
+# regular conditional statement is that the block of code will keep running
+# until the condition is False. The code runs line by line until it reaches the
+# end of the indented block, then it goes back and checks the condition. If the
+# condition is still True, it runs from the start of the while block again. If
+# the condition is False, it starts running the code from the line after the
+# while block.
+# If you run the example above, it will print
+#   3   <- (3 > 0) is True, so it prints the value and reduces value by 1
+#   2   <- (2 > 0) is True, so it prints the value and reduces value by 1
+#   1   <- (1 > 0) is True, so it prints the value and reduces value by 1
+#   Blastoff!  <- (0 > 0) is False. The block is finished so it leaves the block
+
+# Because it runs every time the condition is True, we have to be careful to
+# modify the condition inside the loop, otherwise it will run forever! The
+# following is an example of an infinite while loop - the condition is always
+# True. If this was run, the script would never finish. Never do this!
+while True:
+    print("Infinite while loop!")
+
+# ============================================================================ #
+# LOOP KEYWORDS : continue, break
+# Loops cause the interpreter to change which line of code it's running on, but
+# we actually have more control than just that.
+
+# CONTINUE
+# The continue keyword can only be used inside a loop, and causes the
+# interpreter to skip the current iteration and move on to the next one
+i = 5
+while i > 0:
+    print(i)
+    if i == 3:
+        i -= 2
+        continue
+    i -= 1
+# The output of the above is:
+#   5
+#   4
+#   3
+#   1
+# By using a conditional inside the loop, we can check whether the current value
+# being iterated over is equal to 3, and if it is, reduce the value by 2 (instead
+# of the normal 1) and skip the rest of the lines in the block and move on to the
+# next iteration
+
+# BREAK
+# The break keyword can only be used inside a loop, and causes the loop to
+# immediately end. Any of the remaining values in the loop are skipped.
+i = 0
+while i < 10:
+    i += 1
+    if i == 3:
+        break
+    print(i)
+# The output of the above is:
+#   0
+#   1
+#   2
+# By using the conditional inside the loop, we can check for some condition and
+# finish the loop early. This can be useful if we've found something we're
+# looking for and don't want to waste time running code on the rest of the values.
+
+
+# ============================================================================ #
 # CONTAINERS
 # Containers are types which can hold multiple values, for example, a list of
 # strings.
@@ -78,133 +163,6 @@ short_list.remove(100)  # ValueError: list.remove(x): x not in list
 # There are many more methods on lists that are very useful. Try some out!
 
 # ============================================================================ #
-# TUPLE : tuple
-# For dictionaries the "literal" is regular brackets.
-empty_tuple = ()
-tuple_with_values = (1, 2, 3)
-
-# Tuples are just like lists, except they are "immutable", which means that once
-# a tuple is created it cannot be modified. There are no methods for adding or
-# removing values, and the setitem syntax will raise an error.
-first = tuple_with_values[0]  # 1 <- Value at the first index
-tuple_with_values[0] = 10  # TypeError: 'tuple' object does not support item assignment
-
-# Be careful if trying to create a tuple with only one value. Brackets around a
-# single value or operation just tell python to calculate the value first (The
-# B in BOMDAS for order of operations). To explicitly make it a tuple, add a
-# comma before the last bracket
-single_value_tuple = (5,)  # <- Tuple
-number_5 = (5)  # <- Just the number 5
-
-# ============================================================================ #
-# DICTIONARY : dict
-# For dictionaries the "literal" is curly brackets.
-empty_dictionary = {}
-
-# Dictionaries are like lists, except instead of using an ordered "index" to
-# position values, they can use any "immutable" (more on that later) value such
-# as strings, integers, floats, or even custom types. The value used for the
-# "position" is called the "key", while the value it finds is called the "value"
-# This dictionary uses the string "key" as the key, "mapped" to the string "value"
-example_dictionary = {"key": "value"}
-multiple_dictionary = {"a": 1, "b": 2, "c": 3}
-
-# getitem and setitem work the same as for a list, but using the "key" instead
-# of the "index"
-print(example_dictionary["key"])  # "value" <- Looked up the value under "key"
-example_dictionary["key"] = "a new value"  # <- changed the value under "key"
-print(example_dictionary["key"])  # "a new value"
-# Using a "key" that doesn't exist will raise a KeyError and stop the script
-print(example_dictionary["cat"])  # KeyError: 'cat'
-
-# With lists there is a guarantee that every index number under it's "length"
-# has a value (eg, [1, 2, 3] has length of 3, and indexes 0, 1, 2), but
-# dictionaries don't have that because their "keys" can be anything.
-# There is a "method" called "get()" which acts like getitem, but will return
-# None instead of raising a KeyError if the key doesn't exist.
-example_dictionary.get("cat")  # None <- Tried to get key "cat", but didn't exist
-
-# ADDING / REMOVING
-# To add a new "key value pair", use the setitem syntax
-modify_dictionary = {}
-modify_dictionary["python"] = "fun!"  # <- adds key "python" and value "fun!"
-print(modify_dictionary)  # {"python": "fun!"}
-# Because the key is used for the position, it's not possible to have two of the
-# same key - trying to add a duplicate will replace the original. Keys are unique
-# To remove a "key value pair", use the "pop()" method with the name of the key,
-# which returns the value that the key was mapped to.
-modify_dictionary.pop("python")  # "fun!" <- removes the key "python" and returns it's value
-print(modify_dictionary)  # {}
-# pop() will raise a KeyError if it doesn't exist
-
-# To check whether a dictionary has a key first, use a conditional with the
-# keyword "in" as the comparison operator which will compare against all keys
-# (but not the values!)
-my_dict = {"cat": "dog"}
-if "cat" in my_dict:  # True <- The key is in the dictionary
-    print(my_dict["cat"])
-if "dog" in my_dict:  # False <- The key is not in the dictionary
-    print(my_dict["dog"])
-
-# ============================================================================ #
-# SET : set
-# There is no "literal" for EMPTY sets, they must be created by using their "type"
-# Any builtin type can be initialised as a value by "calling" it's type, ie,
-# using parentheses after the name of the type - this creates the "non-truthy"
-# value of the type. Always use literals where possible as they're much faster.
-empty_int = int()  # 0
-empty_string = str()  # ""
-empty_list = list()  # []
-empty_dictionary = dict()  # {}
-empty_set = set()  # An empty set
-
-# There IS a literal for sets with values. It reuses the curly brackets, but
-# unlike dictionaries, there are only values so the : symbol is not used
-set_of_values = {1, 2, 3}
-
-# Sets store only unique values - it's not possible to have the same value twice
-# Trying to add a duplicate value does nothing
-unique = {1, 1, 1, 1}
-print(unique)  # {1} <- The value 1 only appears once, the rest were discarded
-
-# Sets are unordered, meaning they don't have any indexes or keys. It is not
-# possible to access individual values in a set, so why do they exist?
-# Sets have methods for comparing two sets and returning unique elements, like a
-# Venn diagram
-A = {1, 2, 3, 4}
-B = {3, 4, 5, 6}
-A.intersection(B)  # {3, 4} <- Overlapping values between A and B
-A.difference(B)  # {1, 2} <- Values in A but not in B
-A.union(B)  # {1, 2, 3, 4, 5, 6} <- Values in both A and B, unique elements only
-A.symmetric_difference(B)  # {1, 2, 5, 6} <- Values in A or B but not both
-
-# ============================================================================ #
-# CASTING TYPES
-
-# Just like basic types could be cast between types, eg, int("8") -> 8, so can
-# the container types. Here are some examples:
-a_list = ["duck", "duck", "goose"]
-a_tuple = (True, False, True)
-a_dict = {"one": 1, "two": 2, "three": 3}
-a_set = {1, 2, 3}
-
-list(a_tuple)  # [True, False, True]  <- same values, but now a "mutable" list
-list(a_dict)  # ["one", "two", "three"]  <- Only takes the keys from the dict
-list(a_set)  # [1, 2, 3]  <- same values, but now as a list and can be indexed
-
-tuple(a_list)  # ("duck", "duck", "goose")  <- same values, but now "immutable"
-tuple(a_dict)  # ("one", "two", "three")  <- Only takes the keys from the dict
-tuple(a_set)  # (1, 2, 3)  <- same values, but now as a list and can be indexed
-
-dict(a_list)  # TypeError: cannot convert dictionary update sequence element #0 to a sequence
-dict(a_tuple)  # TypeError: cannot convert dictionary update sequence element #0 to a sequence
-dict(a_set)  # TypeError: cannot convert dictionary update sequence element #0 to a sequence
-
-set(a_list)  # {"duck", "goose"}  <- converting to a set only keeps unique elements
-set(a_tuple)  # {True, False}  <- converting to a set only keeps unique elements
-set(a_dict)  # {"one", "two", "three"}  <- Only takes the keys from the dict
-
-# ============================================================================ #
 # STRINGS
 
 # You may not have realised it, but strings are containers too! They represent a
@@ -264,12 +222,77 @@ print(mutable)  # [10, 2, 3]
 # The variable "mutable" is still pointing to the same list, but the list has
 # changed (or "mutated", hence the name).
 
-# Mutable types include lists, dictionaries, and sets. Tuples are not mutable,
-# because they explicitly stop you from modifying them.
+# ============================================================================ #
+# SHARED REFERENCES
 
-# Why does it matter? Only mutable types can be used as keys in dictionaries, or
-# in sets. The reason for this is because the values have to be unique - there
-# can't be two keys the same in a dictionary, and sets only keep unique values.
-# If there were two mutable values in a set/dict, and one was modified so that
-# it was the same as the other - the container wouldn't know which to keep!
-invalid_set = {[1, 2], [3, 4]}  # TypeError: unhashable type: 'list'
+# When an object is mutable, it's possible for editing one variable to affect
+# another. For example, if we point a variable to a list that's in another
+# variable, they both point to the same list. Modifying either one will mean
+# both are being modified.
+my_list = [1, 2, 3]
+another_list = my_list
+my_list.append(4)
+print(my_list)  # [1, 2, 3, 4]
+print(another_list)  # [1, 2, 3, 4]
+
+# If we want to take a copy of the list, we must use either a full slice or
+# copy method, eg:
+list_a = my_list[:]  # Slice of every value
+list_b = my_list.copy()  # Copy of the list
+
+
+# ============================================================================ #
+# FOR LOOP
+
+# The "for" loop runs once for every item in a container. It also sets a variable
+# to the value of the current container item each time the loop runs, ie, the
+# first time it runs it sets the variable to the first value in the container,
+# the second time it runs it sets the variable to the second value, etc...
+# The syntax for the "for" loop is:
+#   for {variable} in {container}:
+#       {block of code}
+# You can use any variable name for {variable}, it is created and assigned as
+# part of the loop, ie, you don't need the assignment operator (=) at all.
+numbers = [1, 2, 3]
+for num in numbers:
+    print(num)
+
+# The "for" loop above is effectively the same as running the following:
+num = numbers[0]
+print(num)
+num = numbers[1]
+print(num)
+num = numbers[2]
+print(num)
+
+# The difference is that the "for" loop will work on every value, no matter how
+# big the list is! This is great when you have a list but don't know how many
+# values are in it.
+
+# The "for" loop will work on all containers. Lists and tuples will work as you
+# would expect, taking each value in order.
+a_list = [1, 2, 3]
+for i in a_list:
+    print(i)
+
+# Sets however are unordered, meaning the order of the values you get back might
+# not be the same as the order they were put in - if order is expected, it
+# should be cast to a list and sorted first
+a_set = {1, 2, 3}
+for i in a_set:  # Could be any order
+    print(i)
+for i in sorted(a_set):  # Reliable sorted order!
+    print(i)
+
+# By default, using a "for" loop on a dictionary will loop over the keys. Just
+# like sets, the order is not guaranteed!
+a_dict = {"a": 1, "b": 2, "c": 3}
+for key in a_dict:  # Some order of "a", "b", "c"
+    print(key)
+# To loop over the values, use the .values() method. This is also unordered.
+for value in a_dict.values():  # Some order of 1, 2, 3
+    print(value)
+# To loop over both together, use the .items() method. This requires defining
+# two variables are part of the loop, one for the key and one for the value.
+for key, value in a_dict.items():  # Some order of "a"=1, "b"=2, "c"=3
+    print(key, "=", value)
