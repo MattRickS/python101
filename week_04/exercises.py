@@ -15,7 +15,11 @@ example_list = [8, 2, 3, 0, 7]
 # 6. Write a function which takes a list and returns a list of the unique values
 #    For example, unique([1,2,2,3,3,3]) -> [1, 2, 3]
 
-# 7. The code below might cause an error if it runs. Write some code to catch
+# 7. Write a function which takes a string and returns the acronym for it, ie,
+#    it returns the first letter of each word. Eg,
+#    acronym("be right back") -> "brb"
+
+# 8. The code below might cause an error if it runs. Write some code to catch
 #    and print out any errors that happen
 VALUES = [10, 20, 30]
 
